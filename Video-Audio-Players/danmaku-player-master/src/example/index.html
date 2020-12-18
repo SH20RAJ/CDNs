@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>danmaku-player example</title>
+</head>
+<body>
+  <style>
+    *{margin:0;padding:0;}
+    html,body{
+      width:100%;
+      height:100%;
+    }
+    #player{
+      position: relative;
+      left:50%;
+      transform: translate3d(-50%,0,0);
+      
+    }
+    p{
+      text-align: center;
+      margin:10px 0;
+    }
+
+    danmaku-player{
+      --co:fuchsia;
+    }
+  </style>
+    <a href="//github.com/dwqdaiwenqi/danmaku-player" target="_blank" style="position:absolute;right:0;top:0;z-index:3;" >
+      <img src="//alloyteam.github.io/github.png" alt=""/>
+    </a>
+    <danmaku-player id="player" autoplay="false"
+    danmakuapi="//static.xyimg.net/cn/static/fed/common/danmaku-list.json"
+    thumbnail="//static.xyimg.net/cn/static/fed/common/img/thumbnail-tile-90X1-scale-160X90.png"
+    thumbnailtile="90"
+    poster="//static.xyimg.net/cn/static/fed/common/img/posterx.jpg"
+    src="//static.xyimg.net/cn/static/fed/common/media/Galileo180.mp4"></danmaku-player>
+  <div>
+    <p>尝试输入特效指令，如：#下雪..</p>
+  </div>
+  <script>
+    var $player = document.querySelector('#player')
+
+
+    // $player.loop = false
+    $player.autoplay =false
+    $player.playbackrate=1
+    $player.enableSendDanmaku=true
+    $player.enableSwitchDanmaku=true
+    
+
+    // $player.play()
+    
+    $player.addEventListener('senddanmaku',(e)=>{
+      //debugger
+      console.log('senddanmaku')
+    })
+    $player.addEventListener('progress',e=>{
+      console.log('progress')
+    })
+    $player.addEventListener('loadeddata',e=>{
+      console.log('loadeddata')
+    })
+
+    $player.addEventListener('canplay',e=>{
+      console.log('canplay')
+    })
+    $player.addEventListener('play',(e)=>{
+      console.log('play')
+    })
+    $player.addEventListener('timeupdate',(e)=>{
+     console.log('timeupdate')
+    })
+    $player.addEventListener('ended',e=>{
+      console.log('ended.')
+    })
+
+  </script>
+</body>
+</html>
